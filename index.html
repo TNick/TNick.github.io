@@ -47,12 +47,23 @@ title: TNick.github.io
   </div>
 
   <div class="section">
-  <h1 class="section_title">Blog Posts</h1>
+  <h1 class="section_title">Latest Blog Posts</h1>
   <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% for post in site.posts offset:0 limit:10 %}
+      <li>
+        <span>{{ post.date | date_to_string }}</span> &raquo; 
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        [ in
+	{% for category in post.categories %}
+	  <a href="/categories/{{ category }}.html">{{ category }}</a>
+	{% endfor %}
+        ]
+     </li>
     {% endfor %}
   </ul>
+  <p>
+    See them <a href="/categories/all.html">all</a>.
+  </p>
   </div>
 
 </div>

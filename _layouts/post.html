@@ -8,3 +8,10 @@ layout: default
 {{ content }}
 </div>
 
+<p class="post_tags_list">
+Tagged with 
+{% for category in page.categories %}
+  <a href="/categories/{{ category }}.html">{{ category }}</a>
+{% endfor %}
+</p>
+
