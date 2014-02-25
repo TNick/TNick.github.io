@@ -1,0 +1,50 @@
+---
+layout: default
+title: TNick.github.io
+---
+
+<div id="home">
+
+  <div class="section">
+  <h1 class="section_title">Hello</h1>
+
+  <p>
+    This site lists projects that I contribute to and projects that I've found
+    interesting in the past. I had
+    <a href="https://sites.google.com/site/tnickweb/home">another, similar site</a>
+    that I no longer maintain.
+  </p>
+  </div>
+
+  <div class="section">
+  <h1 class="section_title">Projects</h1>
+  <p>
+    These are the things that I work on right now.
+  </p>
+  <dl>
+    <dt><a href="http://tnick.github.io/aitown/">aitown</a></dd>
+    <dd>Code resources related to AI; <a href="https://github.com/TNick/aitown">github.com/TNick/aitown</a></dd>
+    <dt><a href="https://github.com/TNick/ros-aitown">ros-aitown</a></dd>
+    <dd>ROS bindings for ai-town project; <a href="https://github.com/TNick/ros-aitown">github.com/TNick/ros-aitown</a></dd>
+  </dl>
+  </div>
+
+  <div class="section">
+  <h1 class="section_title">Older Projects</h1>
+  <p>
+    A list of projects that got kicked off <strong>Projects</strong> section
+    is <a href="older_projects.html">here</a>.
+  </p>
+  </div>
+
+  <div class="section">
+  <h1 class="section_title">Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  </div>
+
+</div>
+

@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Welcome to my new site!"
+date:   2014-02-25 11:00:39
+categories: update
+---
+
+My [old site](https://sites.google.com/site/tnickweb/home) got
+pretty cluttered, so I decided to use [github's](https://github.com) offer with
+[Jekyll][jekyll].
+
+[Jekyll][jekyll] offers powerful support for code snippets:
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+and all you have to do is to add a file in the `_posts` 
+directory that follows the convention: `YYYY-MM-DD-name-of-post.ext`.
+
+That's pretty awesome!. :)
+
+[jekyll]:    http://jekyllrb.com
+
