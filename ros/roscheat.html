@@ -1,0 +1,331 @@
+---
+layout: nolayout
+title: ROS cheatsheet
+---
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="index,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <title>Cheat Sheet</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <style>
+        em {
+            color: #808080;
+        }
+    </style>
+</head>
+<body  lang="en" dir="ltr" style="font-size:70%; line-height:140%">
+    <div class="row-fluid span12">
+        <div class="span2" style="background-color: #E0E0E0;" >
+            <b>Start</b><br />
+            $ <a href="">source</a> /opt/ros/distro/setup.bash<br />
+            $ <a href="">export</a> | grep ROS<br />
+            $ <a href="http://wiki.ros.org/roscore">roscore</a> <em># first thing</em><br />
+
+            <br />
+            <b>Create <a href="http://wiki.ros.org/catkin/Tutorials/using_a_workspace">workspace</a> with <a href="http://wiki.ros.org/catkin">catkin</a></b><br />
+            $ <a href="">mkdir</a> -p ~/catkin_ws/src<br />
+            $ <a href="">cd</a> ~/catkin_ws/src<br />
+            $ <a href="">catkin_init_workspace</a><br />
+            <a href="http://wiki.ros.org/catkin/CMakeLists.txt">CMakeLists.txt</a><br />
+            <b>Build workspace</b><br />
+            $ <a href="">cd</a> ~/catkin_ws/<br />
+            $ <a href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> [target] [-DVAR=val]<br />
+            $ <a href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> --force-cmake<br />
+            $ <a href="http://wiki.ros.org/catkin/commands/catkin_make">catkin_make</a> install<br />
+            $ <a href="http://www.ros.org/reps/rep-0134.html">catkin_make_isolated</a><br />
+            <b>Use workspace</b><br />
+            $ <a href="">cd</a> ~/catkin_ws/<br />
+            $ <a href="">source</a> devel/setup.bash<br />
+            <b>Create package</b><br />
+            $ <a href="">cd</a> ~/catkin_ws/src<br />
+            $ <a href="http://wiki.ros.org/ROS/Tutorials/CreatingPackage">catkin_create_pkg</a> name std_msgs rospy roscpp<br />
+            <b>Other catkins</b><br />
+            <a href="">catkin_find</a><br />
+            <a href="">catkin_package_version</a><br />
+            <a href="">catkin_prepare_release</a><br />
+            <a href="">catkin_test_results</a><br />
+            <a href="">catkin_topological_order</a><br />
+            <br />
+
+            <b><a href="http://docs.ros.org/independent/api/rospkg/html/rospack.html">rospack</a></b><br />
+            $ * find roscpp <em># path</em><br />
+            $ * list <em># all with path</em><br />
+            $ * list-names <em># all w/o path</em><br />
+            $ * depends roscpp <em># dependencies</em><br />
+            $ * depends1 roscpp <em># dependencies</em><br />
+            $ * rosdep roscpp <em># dependencies</em><br />
+            $ * rosdep0 roscpp <em># dependencies</em><br />
+            <a href="http://wiki.ros.org/roscreate">roscreate-pkg</a><br />
+            <br />
+
+            <b>File system</b><br />
+            $ <a href="http://wiki.ros.org/rosbash#roscd">roscd</a> roscpp/msg<br />
+            $ <a href="">echo</a> $ROS_PACKAGE_PATH<br />
+            $ <a href="">roscd</a> log<br />
+            $ <a href="http://wiki.ros.org/rosbash#rospd">rospd</a> roscpp<br />
+            $ <a href="http://wiki.ros.org/rosbash#rosd">rosd</a> <em># list from rospd</em><br />
+            $ <a href="http://wiki.ros.org/rosbash#rosls">rosls</a> <em># list</em><br />
+            $ <a href="">export</a> EDITOR="vim"<br />
+            $ <a href="http://wiki.ros.org/rosbash#rosed">rosed</a> roscpp package.xml<br />
+            $ <a href="http://wiki.ros.org/rosbash#roscp">roscp</a> roscpp package.xml .<br />
+
+        </div>
+        <div class="span2" style="background-color: #F0F0B0;">
+
+            <b><a href="http://wiki.ros.org/rosnode">rosnode</a></b><br />
+            $ * ping n <em># test</em><br />
+            $ * list <em># list active nodes</em><br />
+            $ * info n <em># information about node</em><br />
+            $ * machine <em># list machines</em><br />
+            $ * machine m <em># nodes on machine</em><br />
+            $ * kill n <em># kill a node</em><br />
+            $ * cleanup <em># unreach. nodes</em><br />
+            <a href="http://wiki.ros.org/Remapping%20Arguments">Remapping names</a><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rostopic">rostopic</a></b><br />
+            $ * bw t <em># bandwidth</em><br />
+            $ * echo t <em># print messages</em><br />
+            $ * find msgty <em># topics by type</em><br />
+            $ * hz t <em># publishing rate</em><br />
+            $ * info t<em># info about topic</em><br />
+            $ * list <em># list topics</em><br />
+            $ * pub t type data<em># publish data</em><br />
+            $ * type t<em># topic type</em><br />
+            $ * pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'<br />
+            $ * pub -r 10 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'<br />
+            <br />
+            <b><a href="http://wiki.ros.org/msg">Messages</a></b><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv">tutorial</a><br />
+            <a href="http://wiki.ros.org/rosmsg">rosmsg</a><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosmsg">rosmsg</a></b><br />
+            $ * show m <em># message fields</em><br />
+            $ * list <em># list all messages</em><br />
+            $ * md5 <em># message md5sum</em><br />
+            $ * package p <em># list messages</em><br />
+            $ * packages <em># list packages</em><br />
+            <a href="http://wiki.ros.org/rosmsg">rosmsg-proto</a><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosbash#rosrun">rosrun</a></b><br />
+            $ * rqt_graph <a href="http://wiki.ros.org/rqt_graph">rqt_graph</a><br />
+            $ * rqt_plot <a href="http://wiki.ros.org/rqt_plot">rqt_plot</a><br />
+            $ * rqt_console <a href="http://wiki.ros.org/rqt_console">rqt_console</a><br />
+            $ * rviz <a href="http://wiki.ros.org/rviz">rviz</a><br />
+            $ <a href="http://wiki.ros.org/rosbash#rosrun">rosrun</a> roscpp exe _prm:=val<br />
+            <a href="http://wiki.ros.org/roslaunch">roslaunch</a> package_name <a href="http://wiki.ros.org/roslaunch/XML">file.launch</a><br />
+            <a href="http://wiki.ros.org/roslaunch">roslaunch-complete</a><br />
+            <a href="http://wiki.ros.org/roslaunch">roslaunch-deps</a><br />
+            <a href="http://wiki.ros.org/roslaunch">roslaunch-logs</a><br />
+
+            <br />
+            <b><a href="http://wiki.ros.org/roswtf">roswtf</a> - <a href="http://wiki.ros.org/ROS/Tutorials/Getting%20started%20with%20roswtf">Tutorial</a></b><br />
+
+        </div>
+        <div class="span2" style="background-color: #E0E0E0;">
+            <b><a href="http://wiki.ros.org/srv">Services</a></b><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv">tutorial 1</a><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29">tutorial 2</a><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosservice">rosservice</a></b><br />
+            $ * args s <em># print service arguments</em><br />
+            $ * call s [args] <em># call service w/ args</em><br />
+            $ * call spawn 2 2 0.2 "name"<br />
+            $ * find st <em># services by type</em><br />
+            $ * info s <em># print info</em><br />
+            $ * list <em># list services</em><br />
+            $ * list ns <em># in namespace</em><br />
+            $ * node s <em># node containing service</em><br />
+            $ * type s <em># service type</em><br />
+            $ * uri s <em># service ROSRPC uri</em><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosmsg">rossrv</a></b><br />
+            $ * show s <em># service fields</em><br />
+            $ * list <em># list all service</em><br />
+            $ * md5 <em># server md5sum</em><br />
+            $ * package s <em># list service</em><br />
+            $ * packages <em># list packages</em><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosparam">rosparam</a></b><br />
+            $ * set p val <em># set parameter</em><br />
+            $ * get p <em># get parameter</em><br />
+            $ * get / <em># show all</em><br />
+            $ * load f [node]<em># load parameters from file</em><br />
+            $ * dump f <em># dump parameters to file</em><br />
+            $ * delete <em># delete parameter</em><br />
+            $ * list <em># list names</em><br />
+            $ * list ns<em># in namespace</em><br />
+            <br />
+            <b><a href="http://wiki.ros.org/rosbag">rosbag</a> - <a href="http://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data">Tutorial</a></b><br />
+            $ * check <em># playable/migratable.</em><br />
+            $ * compress <em># one or more</em><br />
+            $ * decompress <em># one or more</em><br />
+            $ * filter <em># Filter the contents</em><br />
+            $ * fix <em># Repair for crt system</em><br />
+            $ * info <em># Summarize</em><br />
+            $ * play <em># Play back</em><br />
+            $ * record <em># Record.</em><br />
+            $ * reindex <em># one or more</em><br />
+            <a href="http://wiki.ros.org/rosbag/Commandline">arguments</a><br />
+            <a href="http://wiki.ros.org/Bags">bags</a><br />
+            <br />
+
+        </div>
+        <div class="span2" style="background-color: #F0F0B0;">
+            <b><a href="http://wiki.ros.org/rqt">GUI utilities</a></b><br />
+            <a href="http://wiki.ros.org/rqt">rqt</a><br />
+            <a href="http://wiki.ros.org/rqt">rqt_image_view</a><br />
+            <a href="http://wiki.ros.org/rqt">rqt_logger_level</a><br />
+            <a href="http://wiki.ros.org/rqt">rqt_plot</a><br />
+            <a href="http://wiki.ros.org/rqt">rqt_bag</a><br />
+            <a href="http://wiki.ros.org/rqt">rqt_console</a><br />
+            <a href="http://wiki.ros.org/rqt">rosgraph</a><br />
+            <br />
+
+            <b><a href="http://wiki.ros.org/vision_opencv">OpenCV</a></b><br />
+            <a href="http://wiki.ros.org/vision_opencv">opencv_createsamples</a><br />
+            <a href="http://wiki.ros.org/vision_opencv">opencv_haartraining</a><br />
+            <a href="http://wiki.ros.org/vision_opencv">opencv_performance</a><br />
+            <a href="http://wiki.ros.org/vision_opencv">opencv_traincascade</a><br />
+            <br />
+
+
+
+            <b>urdf - <a href="http://wiki.ros.org/urdf/Tutorials">Tutorials</a></b><br />
+            <a href="http://wiki.ros.org/urdf">urdf_mem_test</a><br />
+            <a href="http://wiki.ros.org/urdf">urdf_to_graphiz</a><br />
+            <a href="http://wiki.ros.org/urdf">check_urdf</a><br />
+            <br />
+
+            <b>octree</b><br />
+            <a href="">convert_octree</a><br />
+            <a href="">edit_octree</a><br />
+            <a href="">eval_octree_accuracy</a><br />
+            <a href="">compare_octrees</a><br />
+            <br />
+
+            <b>Other utilities</b><br />
+
+            <a href="http://wiki.ros.org/rosboost_cfg">rosboost-cfg</a><br />
+            <a href="http://wiki.ros.org/rosclean">rosclean</a><br />
+            <a href="http://wiki.ros.org/rosdoc_lite">rosdoc_lite</a><br />
+            <a href="http://wiki.ros.org/rosmake">rosmake</a><br />
+            <a href="http://wiki.ros.org/rosmaster">rosmaster</a><br />
+            <a href="http://wiki.ros.org/rostest">rostest</a><br />
+            <a href="http://wiki.ros.org/rosunit">rosunit</a><br />
+
+            <a href="">binvox2bt</a><br />
+            <a href="">bt2vrml</a><br />
+            <a href="">graph2tree</a><br />
+            <a href="">log2graph</a><br />
+            <a href="">plugin_macro_update</a><br />
+            <a href="http://wiki.ros.org/stage_ros">stage</a><br />
+            <a href="http://wiki.ros.org/tf">tf_remap</a><br />
+            <a href="">view_frames</a><br />
+
+
+
+        </div>
+        <div class="span2" style="background-color: #E0E0E0;">
+            <b>Publisher</b><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29">tutorial</a><br />
+            <a href="https://raw.github.com/ros/ros_tutorials/groovy-devel/roscpp_tutorials/talker/talker.cpp">example</a><br />
+            <br />
+            <b>Subscriber</b><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29">tutorial</a><br />
+            <a href="https://raw.github.com/ros/ros_tutorials/groovy-devel/roscpp_tutorials/listener/listener.cpp">example</a><br />
+            <br />
+            <b>Client</b><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient%28c%2B%2B%29">tutorial</a><br />
+            <a href="http://docs.ros.org/hydro/api/actionlib/html/add__two__ints__client_8cpp_source.html">example</a><br />
+            <br />
+            <b>Management</b><br />
+            Enter src in workspace and type:<br />
+            <a href="http://wiki.ros.org/wstool">wstool</a> set humanoid_msgs --git https://github.com/ahornung/humanoid_msgs<br />
+            Then update using:<br />
+            <a href="http://wiki.ros.org/wstool">wstool</a> update humanoid_msgs<br />
+            cd ..<br />
+            catkin_make_isolated --pkg humanoid_msgs<br />
+            catkin_make_isolated --install --pkg humanoid_msgs<br />
+
+        </div>
+        <div class="span2" style="background-color: #F0F0B0;">
+
+            <b><a href="http://wiki.ros.org/Client%20Libraries">Main client libraries</a></b> (<a href="http://wiki.ros.org/roscpp">roscpp</a>)<br />
+            <b><a href="http://wiki.ros.org/geometry?distro=hydro">Geometry library</a></b> (<a href="http://wiki.ros.org/tf?distro=hydro">tf</a>)<br />
+            <br />
+            <b>Stacks</b><br />
+            <a href="http://wiki.ros.org/actionlib">actionlib</a> (<a href="http://wiki.ros.org/actionlib/Tutorials">tutorials</a>)<br />
+            <a href="http://wiki.ros.org/navigation">navigation</a> (<a href="http://wiki.ros.org/navigation/Tutorials">tutorials</a>)<br />
+            <a href="http://wiki.ros.org/arm_navigation">arm_navigation</a> (<a href="http://wiki.ros.org/arm_navigation/Tutorials">tutorials</a>)<br />
+            <a href="http://wiki.ros.org/ros_control">ros_control</a> (<a href="http://wiki.ros.org/ros_control/Tutorials">tutorials</a>)<br />
+            <a href="http://wiki.ros.org/pluginlib">pluginlib</a> (<a href="http://wiki.ros.org/pluginlib/Tutorials">tutorials</a>)<br />
+            <a href="http://wiki.ros.org/image_common?distro=hydro">image_common</a> (<a href="http://wiki.ros.org/image_common?distro=hydro/Tutorials">tutorials</a>)<br />
+            <br />
+            <b>Packages</b><br />
+            <a href="http://wiki.ros.org/RecommendedRepositoryUsage/CommonGitHubOrganizations">GitHub Organizations</a><br />
+            <a href="http://www.ros.org/browse/list.php?package_type=package&distro=hydro">packages</a>,
+            <a href="http://www.ros.org/browse/list.php?package_type=stack&distro=hydro">stacks</a> and
+            <a href="http://www.ros.org/browse/list.php?package_type=metapackage&distro=hydro">meta-packages</a> for hydro <br />
+            <br />
+            <b>Distributions</b><br />
+            <a href="http://wiki.ros.org/hydro">Hydro Medusa</a> (hydro)<br />
+            <a href="http://wiki.ros.org/groovy">Groovy Galapagos</a> (groovy)<br />
+            <a href="http://wiki.ros.org/fuerte">Fuerte Turtle</a> (fuerte)<br />
+            <a href="http://wiki.ros.org/electric">Electric Emys</a> (electric)<br />
+            <a href="http://wiki.ros.org/diamondback">Diamondback</a> (diamondback)<br />
+            <a href="http://wiki.ros.org/cturtle">C Turtle</a> (cturtle)<br />
+            <a href="http://wiki.ros.org/boxturtle">Box Turtle</a> (boxturtle)<br />
+            <br />
+
+            <b>Other links</b><br />
+            <a href="http://wiki.ros.org/">wiki</a><br />
+            <a href="http://wiki.ros.org/ROS/Tutorials">tutorials</a><br />
+            <a href="http://answers.ros.org/questions/">answers.ros.org</a><br />
+            <a href="http://wiki.ros.org/Tickets">tickets</a><br />
+            <a href="http://irc.lc/oftc/ros/yourname">irc</a><br />
+            <a href="http://www.ros.org/reps/rep-0000.html">REP index</a><br />
+            repos: <a href="https://github.com/ros">ros</a>, <a href="https://github.com/ros-infrastructure">infrastructure</a><br />
+            <a href="http://wiki.ros.org/hydro/Installation">Install</a> (<a href="http://wiki.ros.org/hydro/Installation/Source">from src</a>)<br />
+            <a href="http://wiki.ros.org/ROS/EnvironmentVariables">Environment variables</a><br />
+
+        </div>
+
+    </div>
+
+    <hr />
+    <div>&nbsp;</div>
+    <table border="1" width="100%"><tr><td></td></tr></table>
+    <hr />
+
+
+    <div class="row-fluid span12">
+        <div class="span2" >
+            <b>Distributions</b><br />
+
+        </div>
+        <div class="span2" >
+
+        </div>
+        <div class="span2" >
+
+        </div>
+        <div class="span2" >
+
+        </div>
+        <div class="span2" >
+
+        </div>
+        <div class="span2" >
+
+        </div>
+    </div>
+
+</body>
+</html>
