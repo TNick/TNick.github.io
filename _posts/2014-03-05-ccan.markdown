@@ -1,0 +1,797 @@
+---
+layout: post
+title:  "ccan - Comprehensive C Archive Network"
+date:   2014-03-05 22:00:00
+categories: overview
+---
+
+While looking at [dynamic arrays]({% post_url 2014-03-05-dynamic-arrays %})
+I discovered [ccan](http://ccodearchive.net/). Having had
+[similar ideas](http://sourceforge.net/projects/libbbb/) in the
+past, I thought I should investigate this and log here my findings.
+
+There does not seem to be a nice one page that lists all modules with a
+short description, so this may serve as a start. Text was copy-pasted from
+`_info` files, sometimes with comments of my own.
+
+Some ideas for contributing are: a [jekyll](http://jekyllrb.com/)
+site partly generated from `_info` files, hosted by [GitHub](https://github.com/) and a
+[CMake](http://www.cmake.org/) build system.
+
+
+
+
+Algorithms
+==========
+
+
+[avl](http://ccodearchive.net/info/avl.html)
+--------------------------------------------
+
+An [AVL tree](http://en.wikipedia.org/wiki/AVL_tree)
+is a self-balancing binary tree that performs
+insertion, removal, and lookup in O(log n) time per operation.
+
+
+[btree](http://ccodearchive.net/info/btree.html)
+------------------------------------------------
+
+A [B-tree](http://en.wikipedia.org/wiki/B-tree)
+(not to be confused with a [binary tree](http://en.wikipedia.org/wiki/Binary_tree))
+is a data structure that performs insertion, 
+removal, and lookup in O(log n) time per operation.
+Although B-trees are typically used for databases and filesystems, this is
+an in-memory implementation.
+
+
+[darray](http://ccodearchive.net/info/darray.html)
+--------------------------------------------------
+
+darray is a set of macros for managing dynamically-allocated arrays.
+It removes the tedium of managing realloc'd arrays with pointer, size, and
+allocated size.
+
+
+[hash](http://ccodearchive.net/info/hash.html)
+----------------------------------------------
+
+When creating a hash table it's important to have a hash function
+which mixes well and is fast.  This package supplies such functions.
+
+
+[heap](http://ccodearchive.net/info/heap.html)
+----------------------------------------------
+
+A simple heap implementation.
+
+
+[htable](http://ccodearchive.net/info/htable.html)
+--------------------------------------------------
+
+A [hash table](http://en.wikipedia.org/wiki/Hash_table)
+is an efficient structure for looking up keys.  This version
+grows with usage and allows efficient deletion.
+
+
+[idtree](http://ccodearchive.net/info/idtree.html)
+--------------------------------------------------
+
+There are often cases where you want to provide an integer handle for
+some data, and easily map it back to another structure.
+idtree is an efficient implementation of an `int->void *` mapping, with
+assignment of the lowest available id number. 
+
+
+[isaac](http://ccodearchive.net/info/isaac.html)
+------------------------------------------------
+
+A fast, high-quality pseudo-random number generator.
+
+
+[jmap](http://ccodearchive.net/info/jmap.html)
+----------------------------------------------
+
+This provides a convenient wrapper for using
+[JudyL](http://judy.sourceforge.net/doc/JudyL_3x.htm) arrays; using
+integers or pointers as an index, Judy arrays provide an efficient
+map to integers or pointers.
+
+
+[jset](http://ccodearchive.net/info/jset.html)
+----------------------------------------------
+
+This provides a convenient wrapper for using Judy bitsets; using
+pointers (or unsigned longs) as the index, Judy arrays provide an
+efficient bit array or bit map of variable size.
+
+
+[list](http://ccodearchive.net/info/list.html)
+----------------------------------------------
+
+The list header contains routines for manipulating double linked lists.
+It defines two types: `struct list_head` used for anchoring lists, and
+`struct list_node` which is usually embedded in the structure which is placed
+in the list.
+
+
+[md4](http://ccodearchive.net/info/md4.html)
+--------------------------------------------
+
+Message Digest #4 is a 128-bit hashing algorithm; it is quick but
+not sufficiently strong for cryptographic use (duplicates can be
+found very efficiently).  It provides sufficient mixing to have an
+avalanche effect: any change in input changes the output completely.
+
+
+[objset](http://ccodearchive.net/info/objset.html)
+--------------------------------------------------
+
+This code implements a very simple unordered set of pointers.  It's very
+fast to add and check if something is in the set; it's implemented by
+a hash table.
+
+
+[rbtree](http://ccodearchive.net/info/rbtree.html)
+--------------------------------------------------
+
+This is an implementation of a red-black tree based on talloc.
+Talloc objects that are stored in the tree have nice properties
+such as when the object is talloc_free()d, the object is also
+automatically removed from the tree. This is done by making the
+nodes of the tree child objects of the talloc object stored in the
+tree, so that destructors are called to automatically remove the
+node from the tree.
+
+
+[siphash](http://ccodearchive.net/info/siphash.html)
+----------------------------------------------------
+
+`SipHash-c-d`, where `c` is the number of rounds per message chunk
+and `d` the number of finalization rounds,
+"is a family of pseudorandom functions optimized for speed on short
+messages". Implemented from the paper
+[131002.net/siphash/](https://131002.net/siphash/).
+
+
+[sparse_bsearch](http://ccodearchive.net/info/sparse_bsearch.html)
+------------------------------------------------------------------
+
+Search a sorted array with some invalid entries. 
+Sometimes there is a useful invalid value which can be used to mark deleted
+entries, but such a "gappy" array breaks bsearch.  This function allows
+"invalid" entries in your array, which are ignored for the search.
+
+
+[stringmap](http://ccodearchive.net/info/stringmap.html)
+--------------------------------------------------------
+
+Macros for mapping strings to things.
+
+
+[strmap](http://ccodearchive.net/info/strmap.html)
+--------------------------------------------------
+
+This code implements an ordered map of strings as 
+a [critbit tree](http://cr.yp.to/critbit.html).
+
+
+[strset](http://ccodearchive.net/info/strset.html)
+--------------------------------------------------
+
+This code implements an ordered set of string as
+a [critbit tree](http://cr.yp.to/critbit.html).
+
+
+[tlist](http://ccodearchive.net/info/tlist.html)
+------------------------------------------------
+
+Typesafe double linked list routines
+The list header contains routines for manipulating double linked lists;
+this extends it so you can create list head types which only accomodate
+a specific entry type.
+
+
+
+
+talloc() and friends
+====================
+
+[block_pool](http://ccodearchive.net/info/block_pool.html)
+----------------------------------------------------------
+
+An efficient allocator for blocks that don't need to be 
+resized or freed.
+
+
+[grab_file](http://ccodearchive.net/info/grab_file.html)
+--------------------------------------------------------
+
+This contains simple functions for getting the contents of a file.
+
+
+[str_talloc](http://ccodearchive.net/info/str_talloc.html)
+----------------------------------------------------------
+
+This is a grab bag of fnctions for string operations, designed to enhance
+the standard string.h; these are separated from the non-talloc-needing
+string utilities in `str.h`.
+
+
+[tal](http://ccodearchive.net/info/tal.html)
+--------------------------------------------
+
+Tal is a hierarchical allocator; any pointer allocated by tal can
+become the parent of another allocation.  When you free that parent,
+the children (and grandchildren, etc) are automatically freed.
+
+
+[talloc](http://ccodearchive.net/info/talloc.html)
+--------------------------------------------------
+
+Talloc is a hierarchical memory pool system with destructors: you keep your
+objects in heirarchies reflecting their lifetime.  Every pointer returned
+from talloc() is itself a valid talloc context, from which other talloc()s
+can be attached.  This means you can do this:
+
+{% highlight c %}
+struct foo *X = talloc(mem_ctx, struct foo);
+X->name = talloc_strdup(X, "foo");
+{% endhighlight %}
+
+
+[talloc_link](http://ccodearchive.net/info/talloc_link.html)
+------------------------------------------------------------
+
+Talloc references can be confusing and buggy.  In the cases where an object
+needs multiple parents, all parents need to be aware of the situation; thus
+`talloc_link` is a helper where all "parents" `talloc_link` an object they
+agree to share ownership of.
+
+
+
+
+Other Modules
+=============
+
+
+[alignof](http://ccodearchive.net/info/alignof.html)
+----------------------------------------------------
+
+`ALIGNOF()` macro will determine alignment of a type.
+{% highlight c %}
+int i = ALIGNOF(char); // i = 1
+{% endhighlight %}
+
+
+[antithread](http://ccodearchive.net/info/antithread.html)
+----------------------------------------------------------
+
+The antithread module provides memory-sharing infrastructure: the programmer
+indicates the size of the memory to share, and then creates subprocesses
+which share the memory.  Pipes are used to hand pointers between the
+main process and the children: usually pointers into the shared memory.
+
+
+[argcheck](http://ccodearchive.net/info/argcheck.html)
+------------------------------------------------------
+
+Check variables for valid ranges; consider this a mild version of assert(3).
+
+
+[array_size](http://ccodearchive.net/info/array_size.html)
+----------------------------------------------------------
+
+Routine for safely deriving the size of a visible array.
+
+{% highlight c %}
+static unsigned int vals[32];
+int i = ARRAY_SIZE(vals); // i = 32
+{% endhighlight %}
+
+
+[asearch](http://ccodearchive.net/info/asearch.html)
+----------------------------------------------------
+
+`asearch()` function does a binary search on the given array.  The
+contents of the array should already be in ascending sorted order
+under the provided comparison function.
+
+
+[asort](http://ccodearchive.net/info/asort.html)
+------------------------------------------------
+
+`asort()` is a typesafe array sort function like `qsort()` with
+an additional context pointer.
+
+
+[asprintf](http://ccodearchive.net/info/asprintf.html)
+------------------------------------------------------
+
+This provides a convenient wrapper for `asprintf()`, and also implements
+`asprintf()` if necessary.
+
+
+[autodata](http://ccodearchive.net/info/autodata.html)
+------------------------------------------------------
+
+Stash pointers in your binary for automatic registration.
+Allows declarations in your source which you can gather
+together at runtime to form tables. 
+
+
+[bdelta](http://ccodearchive.net/info/bdelta.html)
+--------------------------------------------------
+
+This library takes two strings containing binary data, and produces a
+"patch" that can be applied to the first one to produce the second one.
+It can be used to save bandwidth and disk space when many texts differing
+by a small number of bytes need to be transmitted or stored.
+
+
+[bitmap](http://ccodearchive.net/info/bitmap.html)
+--------------------------------------------------
+
+This code handles manipulation of bitmaps, arbitrary length arrays
+of bits, that is.
+
+
+[breakpoint](http://ccodearchive.net/info/breakpoint.html)
+----------------------------------------------------------
+
+This code allows you to insert breakpoints within a program.  These will
+do nothing unless your program is run under GDB.
+
+
+[build_assert](http://ccodearchive.net/info/build_assert.html)
+--------------------------------------------------------------
+
+This code provides routines which will cause compilation to fail should some
+assertion be untrue: such failures are preferable to run-time assertions,
+but much more limited since they can only depends on compile-time constants.
+
+
+[bytestring](http://ccodearchive.net/info/bytestring.html)
+----------------------------------------------------------
+
+This code handles manipulation of "bytestrings" represented as a
+structure containing a pointer and length.  Bytestrings are not
+NUL-terminated, and may include internal `\0` characters.
+
+
+[cast](http://ccodearchive.net/info/cast.html)
+----------------------------------------------
+
+C++-inspired macros that serve two purposes: they make it clear the
+exact reason for the cast, and they also (with some compilers) cause
+errors when misused.
+
+
+[ccan_tokenizer](http://ccodearchive.net/info/ccan_tokenizer.html)
+------------------------------------------------------------------
+
+`ccan_tokenizer()` generates a list of tokens given the contents of a C source
+or header file.
+
+
+[charset](http://ccodearchive.net/info/charset.html)
+----------------------------------------------------
+
+The module provides a collection of well-tested routines
+for dealing with 
+[character set nonsense](http://en.wikipedia.org/wiki/Character_set).
+
+
+[check_type](http://ccodearchive.net/info/check_type.html)
+----------------------------------------------------------
+
+C has fairly weak typing: ints get automatically converted to longs, signed
+to unsigned, etc.  There are some cases where this is best avoided, and
+these macros provide methods for evoking warnings (or build errors) when
+a precise type isn't used.
+
+
+[ciniparser](http://ccodearchive.net/info/ciniparser.html)
+----------------------------------------------------------
+
+A dictionary object is allocated which contains string keys and values.
+Functions to read string values return statically allocated objects,
+there is no need to free them (also, do not modify them directly).
+
+Note: this is similar with my 
+[aitown-cfg](http://tnick.github.io/aitown/reference/aitown-cfg.html) 
+([repo](https://github.com/TNick/aitown/tree/master/aitown-cfg)) 
+so maybe they should be merged.
+
+
+[compiler](http://ccodearchive.net/info/compiler.html)
+------------------------------------------------------
+
+Macros for common compiler extensions.
+
+
+[container_of](http://ccodearchive.net/info/container_of.html)
+--------------------------------------------------------------
+
+Routine for upcasting.
+
+
+[cpuid](http://ccodearchive.net/info/cpuid.html)
+------------------------------------------------
+
+CPUID instruction parser for x86/x86_64 CPUs.
+
+
+[crc](http://ccodearchive.net/info/crc.html)
+--------------------------------------------
+
+[Cyclic Redundancy Check](http://en.wikipedia.org/wiki/Cyclic_Redundancy_Check)
+routines reasonably fast but not suitable for cryptographic use.
+
+
+[crcsync](http://ccodearchive.net/info/crcsync.html)
+----------------------------------------------------
+
+This is a complete library for synchronization using a variant of the
+rsync protocol.
+
+
+[daemonize](http://ccodearchive.net/info/daemonize.html)
+--------------------------------------------------------
+
+Daemons should detach themselves thoroughly from the process which launched
+them, and not prevent any filesystems from being unmounted.  `daemonize()`
+helps with the process.
+
+
+[daemon_with_notify](http://ccodearchive.net/info/daemon_with_notify.html)
+--------------------------------------------------------------------------
+
+Daemon-with-notify is different in that the child can send a `SIGUSR1` to
+the parent to indicate it has started (e.g. after memory allocation and
+other things that may fail) so that the parent can return a success or
+failing exit code and init scripts can pick this up easily.
+
+
+[dgraph](http://ccodearchive.net/info/dgraph.html)
+--------------------------------------------------
+
+This code implements a simple directed graph, with nodes and edges.
+
+
+[endian](http://ccodearchive.net/info/endian.html)
+--------------------------------------------------
+
+endian conversion macros for simple types module 
+provides conversion routines, inspired by the linux kernel.
+It also provides leint32_t, beint32_t etc typedefs, which are annotated for
+the sparse checker.
+
+
+[err](http://ccodearchive.net/info/err.html)
+--------------------------------------------
+
+A few platforms don't provide err.h; for those, this provides replacements.
+For most, it simple includes the system err.h.
+
+
+[failtest](http://ccodearchive.net/info/failtest.html)
+------------------------------------------------------
+
+The failtest module overrides various standard functions, and forks
+your unit test at those points to test failure paths.  The failing
+child are expected to fail (eg. when malloc fails), but should not
+leak memory or crash.  After including `failtest_override.h`, you can
+include `failtest_restore.h` to return to non-failing versions.
+
+
+[foreach](http://ccodearchive.net/info/foreach.html)
+----------------------------------------------------
+
+The foreach_int and foreach_ptr macros allow simple iteration of
+static arrays.  This is very efficient with good compiler support
+(ie. gcc), and not too bad (ie. a few compares and mallocs) for
+other compilers.
+
+{% highlight c %}
+foreach_ptr(arg, "--help", "-h", "--usage", "-?", "") {
+  // ...
+}
+{% endhighlight %}
+
+
+[ilog](http://ccodearchive.net/info/ilog.html)
+----------------------------------------------
+
+Integer [binary logarithm](http://en.wikipedia.org/wiki/Binary_logarithm)
+functions. This is the number of bits that would be required to represent
+argument in two's complement notation with all of the leading zeros stripped.
+
+
+[io](http://ccodearchive.net/info/io.html)
+------------------------------------------
+
+Provides a mechanism to write I/O servers with multiple
+connections.  Each callback indicates what I/O they plan next
+(eg. read, write).  It is also possible to write custom I/O
+plans.
+
+
+[iscsi](http://ccodearchive.net/info/iscsi.html)
+------------------------------------------------
+
+It aims to become a full async library for 
+[iscsi](http://en.wikipedia.org/wiki/Iscsi) functionality,
+including all features required to establish and maintain a iscsi
+session, as well as a low level scsi library to create scsi cdb's
+and parse/unmarshall data-in structures.
+
+
+[json](http://ccodearchive.net/info/json.html)
+----------------------------------------------
+
+This is a library for encoding and decoding 
+[JSON](http://json.org/) that strives to be
+easy to learn, use, and incorporate into an application.
+
+
+[lbalance](http://ccodearchive.net/info/lbalance.html)
+------------------------------------------------------
+
+This code helps when you have a large number of one-shot tasks; it tries
+to determine the maximum amount of useful parallelism.
+
+
+[likely](http://ccodearchive.net/info/likely.html)
+--------------------------------------------------
+
+Macros for annotating likely/unlikely branches in the code.
+
+
+[net](http://ccodearchive.net/info/net.html)
+--------------------------------------------
+
+This code makes it simple to support IPv4 and IPv6 without speed penalty
+in clients by using non-blocking simultaneous connect, and using
+a convenience function to create both IPv4 and IPv6 sockets for servers.
+
+
+[nfs](http://ccodearchive.net/info/nfs.html)
+--------------------------------------------
+
+This code offers a POSIX-like interface directly to a 
+[NFS](http://en.wikipedia.org/wiki/Network_File_System)
+(Network File System)) server.
+
+
+[noerr](http://ccodearchive.net/info/noerr.html)
+------------------------------------------------
+
+Routines for cleaning up without blatting errno.
+It is a good idea to follow the standard C convention of setting errno in
+your own helper functions.  Unfortunately, care must be taken in the error
+paths as most standard functions can (and do) overwrite errno, even if they
+succeed.
+
+
+[ogg_to_pcm](http://ccodearchive.net/info/ogg_to_pcm.html)
+----------------------------------------------------------
+
+ogg_to_pcm implements a single function using libvorbis to decode
+signed 16 bit ogg audio data to signed 16 bit PCM data.
+
+
+[opt](http://ccodearchive.net/info/opt.html)
+--------------------------------------------
+
+Simple but powerful command line parsing.
+
+Note: Similar to [ArgTable](http://argtable.sourceforge.net/); should
+compare them in a post.
+
+
+[ptr_valid](http://ccodearchive.net/info/ptr_valid.html)
+--------------------------------------------------------
+
+Test whether a pointer is safe to dereference. Tells you
+if an address is mapped; it doesn't tell you if it's
+read-only (or execute only).
+
+
+[rbuf](http://ccodearchive.net/info/rbuf.html)
+----------------------------------------------
+
+buffered I/O input primitive. This code is like stdio, 
+only simpler and more transparent to the user.
+
+
+[read_write_all](http://ccodearchive.net/info/read_write_all.html)
+------------------------------------------------------------------
+
+Reads and writes entire files. Successful read 
+and write calls may only partly complete if a
+signal is received or they are not operating on a normal file.
+
+
+[rfc822](http://ccodearchive.net/info/rfc822.html)
+--------------------------------------------------
+
+This code allows easy processing of 
+[RFC822](http://www.w3.org/Protocols/rfc822/)/RFC2822/RFC5322
+formatted email messages.  For now only read-only operation is
+supported.
+
+
+[short_types](http://ccodearchive.net/info/short_types.html)
+------------------------------------------------------------
+
+The short_types header provides for convenient abbreviations for the
+posixly-damned `uint32_t` types.  If `ccan/endian/endian.h` is included,
+it also provides `be32`/`le32` for explicitly annotating types of specific
+endian.
+
+
+[str](http://ccodearchive.net/info/str.html)
+--------------------------------------------
+
+This is a grab bag of functions for string operations, designed to enhance
+the standard `string.h`.
+
+
+[take](http://ccodearchive.net/info/take.html)
+----------------------------------------------
+
+This code helps to implement ownership transfer on a per-arg basis:
+the caller wraps the pointer argument in `take()` and the callee checks
+`taken()` to see if it should consume it.
+
+
+[tally](http://ccodearchive.net/info/tally.html)
+------------------------------------------------
+
+The tally module implements simple analysis of a stream of integers.
+Numbers are fed in via tally_add(), and then the mean, median, mode and
+a histogram can be read out.
+
+
+[tap](http://ccodearchive.net/info/tap.html)
+--------------------------------------------
+
+The tap package produces simple-to-parse mainly-human-readable test
+output to assist in the writing of test cases.  It is based on the
+(now-defunct) libtap, which is based on Perl's CPAN 
+[TAP](http://en.wikipedia.org/wiki/Test_Anything_Protocol) module.  Its
+output can be parsed by a harness such as CPAN's Prove.
+
+
+[tcon](http://ccodearchive.net/info/tcon.html)
+----------------------------------------------
+
+This code lets users create a structure with a typecanary; your API
+is then a set of macros which check the type canary before calling
+the generic routines.
+
+
+[time](http://ccodearchive.net/info/time.html)
+----------------------------------------------
+
+This code provides convenient functions for working with time, in the
+form of `struct timespec`.
+
+
+[timer](http://ccodearchive.net/info/timer.html)
+------------------------------------------------
+
+Efficient implementation of rarely-expiring timers.
+This is a lazy implementation of timers: you can add and delete timers
+very quickly, and they are only sorted as their expiry approaches.
+
+
+[ttxml](http://ccodearchive.net/info/ttxml.html)
+------------------------------------------------
+
+Tiny XML library for parsing (trusted!) XML documents.
+This parses an XML file into a convenient data structure.
+
+
+[typesafe_cb](http://ccodearchive.net/info/typesafe_cb.html)
+------------------------------------------------------------
+
+Macros for safe callbacks.
+
+
+[version](http://ccodearchive.net/info/version.html)
+----------------------------------------------------
+
+This code provides some helper functions to deal with version numbers in
+the form `major.minor`.
+
+
+[wwviaudio](http://ccodearchive.net/info/wwviaudio.html)
+--------------------------------------------------------
+
+wwviaudio provides a set of functions for realtime playback and mixing
+of audio samples, e.g. music, sound effects, etc. as in a video game.
+
+
+
+Junk Code
+=========
+
+
+clib
+----
+
+arrays, deque, errors, heap. map, rb, set, slist, stack.
+ 
+
+bitmap
+------
+
+Bitmaps are arrays of unsigned ints, filled with bits in most-
+significant-first order. So bitmap[0] shall contain the bits from
+0 to 31 on a 32bit architecture, bitmap[1] - 32-63, and so forth.
+
+
+pathexpand
+----------
+
+Returns the analog of "cd path" from a directory "cwd".
+The root is defined as empty path (instead of "/")
+An attempt to go past the root (with "..") leaves the path at root.
+
+
+timeout
+-------
+
+execute a program with a timeout by alarm(2)
+
+
+bst
+---
+
+dunno. Binary search tree?
+
+
+polynomial
+----------
+
+A polynomial module with ability to add,sub,mul derivate/integrate, compose ... polynomials 
+
+
+log
+---
+
+log is a set of functions and helper macros intended to make it easy to
+pretty-print log entries.
+
+
+endianess
+---------
+
+Simple check for endianess of the processor.
+
+
+snifstat
+--------
+
+this application captures packets destined to and from 
+a specified host, it then tries to calculate in and out 
+traffic statistics and display it like ifstat .
+
+
+grawk
+-----
+
+[wikipedia.org/wiki/AWK](http://en.wikipedia.org/wiki/AWK)
+
+
+nmbrthry
+--------
+
+Number theory including greathest common divisor, 
+[Chinese Remainder Theorem](http://en.wikipedia.org/wiki/Chinese_remainder_theorem) and
+combinations.
+
+
+
+
