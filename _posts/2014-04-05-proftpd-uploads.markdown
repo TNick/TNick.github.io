@@ -20,7 +20,7 @@ The configuration may be changed with:
 
 {% highlight bash %}
 sudo nano /etc/proftpd/proftpd.conf
-# syntac check the file
+# syntax check the file
 proftpd -t -d5
 {% endhighlight %}
 
@@ -45,7 +45,7 @@ The status may be checked using
 # ProFTPD is started in standalone mode, currently running.
 {% endhighlight %}
 
-To start and stop the server use:
+To start and stop the server via init.d script use:
 
 {% highlight bash %}
 sudo /etc/init.d/proftpd start
@@ -73,16 +73,16 @@ following arguments (see the bottom of this post for full script):
 
 {% highlight bash %}
 $program \
-  $full_path_to_file \
-  $date_and_time_of_transfer \
-  $durration_of_transfer \
-  $size_in_bytes \
-  $transfer_status \
-  $transfer_type
+  "$full_path_to_file" \
+  "$date_and_time_of_transfer" \
+  "$durration_of_transfer" \
+  "$size_in_bytes" \
+  "$transfer_status" \
+  "$transfer_type"
 {% endhighlight %}
 
 `transfer_status` may be either "Completed" or "Incomplete".
-`transfer_type` mey be either "Binary" or "ASCII".
+`transfer_type` may be either "Binary" or "ASCII".
 
 
 We need to change `/etc/init.d/proftpd`, with the `start()` routine
@@ -90,6 +90,7 @@ creating the named pipe and starting `onftpupload` script
 before starting `proftpd`:
 
 {% highlight bash %}
+# ...
 # at the beginning of the file, after PIDFILE
 # is set (line 5)
 
@@ -116,7 +117,7 @@ start()
     mkfifo "$ONUFIFO"
     
     # start listening to named pipe
-    $ONUSCRIPT    \
+    "$ONUSCRIPT"    \
          --fifo=$ONUFIFO \
          --app=$ONUAPP \
          --log=/var/log/proftpd/xferlog \
@@ -153,7 +154,7 @@ signal()
     
 {% endhighlight %}
 
-`/etc/proftpd/proftpd.conf` (and not /etc/proftpd.conf)
+`/etc/proftpd/proftpd.conf` (and not `/etc/proftpd.conf`)
 also needs to be changed to
 let proftpd know about our fifo file:
 
@@ -197,6 +198,10 @@ Here is `/usr/sbin/onftpupload`:
 # Foundation, Inc., 51 Franklin Street, Suite 500, Boston, MA 02110-1335, USA.
 #
 #  $Id: ftpmail,v 1.8 2013/10/13 22:34:14 castaglia Exp $
+# ---------------------------------------------------------------------------
+# Original script was modified by Nicu Tofan <nicu.tofan@gmail.com>
+# to send information about uploads to a local application. Same 
+# license conditions apply.
 # ---------------------------------------------------------------------------
 
 use strict;
