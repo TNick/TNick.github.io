@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "PostgreSql"
+date:   2014-04-09 21:00:00
+categories: walkthrough
+---
+
+Overview
+--------
+
+The [PostgreSql](http://www.postgresql.org/) is advertised as
+"The world's most advanced open source database".
+In Ubuntu, it can be installed using:
+
+{% highlight bash %}
+sudo apt-get install postgresql postgresql-contrib postgresql-client 
+{% endhighlight %}
+
+To interact at the command line use:
+
+{% highlight bash %}
+psql -U postgres -h localhost
+{% endhighlight %}
+
+An database may be created as simple as:
+
+{% highlight sql %}
+
+CREATE DATABASE dbname WITH OWNER = postgres
+  WITH OWNER = postgres
+  ENCODING = 'UTF8'
+  TABLESPACE = pg_default
+  LC_COLLATE = 'en_US.UTF-8'
+  LC_CTYPE = 'en_US.UTF-8'
+  CONNECTION LIMIT = -1;
+
+{% endhighlight %}
+
+Listing databases is done using `\l` and connecting
+with `\c dbnae`. `\dt` will list tables in current database.
+`\d+ tablename` will list the columns for that table.
+
+Create a table with:
+
+{% highlight sql %}
+
+CREATE TABLE IF NOT EXISTS tblex (
+    id         NUMERIC NOT NULL PRIMARY KEY,
+    name       TEXT NOT NULL,
+    age        NUMERIC,
+    height     NUMERIC(5, 2)
+);
+ALTER TABLE 'tblex' 
+  OWNER TO postgres;
+
+{% endhighlight %}
+
+And then delete it with:
+
+{% highlight sql %}
+
+DROP TABLE tblex;
+
+{% endhighlight %}
+
+
+Deleting individual rows where a condition is satisfied:
+
+{% highlight sql %}
+
+DELETE FROM tblex WHERE id=1;
+DELETE FROM tblex WHERE id!=1;
+
+{% endhighlight %}
+
+
+
+
