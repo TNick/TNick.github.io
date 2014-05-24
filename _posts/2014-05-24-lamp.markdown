@@ -1,0 +1,172 @@
+---
+layout: post
+title:  "LAMP on Ubuntu"
+date:   2014-05-24 13:10:00
+categories: walkthrough
+---
+
+Install
+-------
+
+LAMP stands for Linux, Apache, MySQL, PHP. Here are the steps to install
+and configure it on Ubuntu:
+
+{% highlight bash %}
+sudo apt-get install -y apache2 mysql-server libapache2-mod-auth-mysql php5-mysql
+{% endhighlight %}
+
+Fast alternative:
+
+{% highlight bash %}
+sudo apt-get install -y tasksel
+sudo tasksel install lamp-server
+{% endhighlight %}
+
+MySql will ask for a password that should be different from others that you use
+(root password for the system or user pasword).
+
+Next, run:
+
+{% highlight bash %}
+sudo mysql_install_db
+{% endhighlight %}
+
+You can start the MySQL daemon with:
+
+{% highlight bash %}
+cd /usr ; sudo /usr/bin/mysqld_safe &
+{% endhighlight %}
+
+do this now, before proceeding to next step. Now run following interactive script,
+while answering Y to most of the questions:
+
+{% highlight bash %}
+sudo mysql_secure_installation
+{% endhighlight %}
+
+You can test the MySQL daemon with mysql-test-run.pl
+
+{% highlight bash %}
+cd /usr/mysql-test ; perl mysql-test-run.pl
+{% endhighlight %}
+
+Installing PHP:
+
+{% highlight bash %}
+sudo apt-get install -y php5 libapache2-mod-php5 php5-mcrypt phpmyadmin
+{% endhighlight %}
+
+
+Add a new line `ServerName localhost` to `/etc/apache2/apache2.conf`
+
+{% highlight bash %}
+sudo nano /etc/apache2/apache2.conf
+{% endhighlight %}
+
+
+
+Run
+---
+
+To display files in your home directory or other places, create a symlink
+
+{% highlight bash %}
+sudo ln -s /home/tnick/site /var/www/html
+{% endhighlight %}
+
+
+DO NOT DO THIS: To create a new virtual site, copy existing config file:
+
+{% highlight bash %}
+sudo cp  /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/test1.conf
+{% endhighlight %}
+
+and edit it:
+
+{% highlight bash %}
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /home/tnick/test1/site
+        LogLevel debug
+        ErrorLog /home/tnick/test1/logs/error.log
+        CustomLog /home/tnick/test1/logs/access.log combined
+        <Directory /home/tnick/test1/site/>
+        </Directory>
+    </VirtualHost>
+{% endhighlight %}
+
+Now enable the new one and disable the old one:
+
+{% highlight bash %}
+sudo a2dissite 000-default && sudo a2ensite test1
+{% endhighlight %}
+
+And restart apache:
+
+{% highlight bash %}
+sudo service apache2 restart
+{% endhighlight %}
+
+
+Other
+-----
+
+If you need index.php file to be prefered edit `dir.conf` and move it
+inside `IfModule mod_dir.c` block:
+
+{% highlight bash %}
+sudo nano /etc/apache2/mods-enabled/dir.conf
+{% endhighlight %}
+
+
+Listing available PHP modules and installing:
+
+{% highlight bash %}
+apt-cache search php5-
+apt-cache show $package_name
+sudo apt-get install $package_name
+sudo apt-get install php5-mcrypt  php5-xdebug php5-cgi php5-cli php5-json php5-sqlite php5-tidy php5-intl php5-xcache php5-xhprof
+{% endhighlight %}
+
+
+Resources
+---------
+
+- [Installing LAMP On Ubuntu For Newbies](http://www.howtoforge.com/ubuntu_lamp_for_newbies)
+- [www.digitalocean.com](https://www.digitalocean.com/community/articles/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
+
+
+
+
+
+
+
+
+
+
+
+A simple solution for virtual machines in Ubuntu is LXC with virtenv.
+
+Things that need to be installed:
+
+{% highlight bash %}
+sudo apt-get install -y lxc lxctl uuid btrfs-tools xserver-xephyr bridge-utils openbox
+{% endhighlight %}
+
+Latest package for [virtenv](http://virtenv.sourceforge.net/index.html)
+should be downloaded from [here](http://sourceforge.net/projects/virtenv/files/virtenv.deb/).
+
+and installed using:
+
+{% highlight bash %}
+sudo dpkg -i virtrenv_X.Y.Z_1.deb
+{% endhighlight %}
+
+
+virtenv creates a folder `.virtenv` inside home directory where it creates
+folders for each virtuasl machine. If you keep your
+virtual machines elsewhere you can create a symbolic link like so:
+
+{% highlight bash %}
+ln -s $MACHINES/.virtenv /home/tnick/.virtenv
+{% endhighlight %}

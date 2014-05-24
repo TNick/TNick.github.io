@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Virtual Machines in Ubuntu - LXC"
+date:   2014-05-24 12:00:00
+categories: walkthrough
+---
+
+Overview
+--------
+
+A simple solution for virtual machines in Ubuntu is LXC with virtenv.
+
+Things that need to be installed:
+
+{% highlight bash %}
+sudo apt-get install -y lxc lxctl uuid btrfs-tools xserver-xephyr bridge-utils openbox
+{% endhighlight %}
+
+Latest package for [virtenv](http://virtenv.sourceforge.net/index.html)
+should be downloaded from [here](http://sourceforge.net/projects/virtenv/files/virtenv.deb/).
+
+and installed using:
+
+{% highlight bash %}
+sudo dpkg -i virtrenv_X.Y.Z_1.deb
+{% endhighlight %}
+
+
+virtenv creates a folder `.virtenv` inside home directory where it creates
+folders for each virtuasl machine. If you keep your
+virtual machines elsewhere you can create a symbolic link like so:
+
+{% highlight bash %}
+ln -s $MACHINES/.virtenv /home/tnick/.virtenv
+{% endhighlight %}
+
+Resources
+---------
+
+- [LXC on Ubuntu](http://srdandukic.blogspot.ro/2012/04/lxc-on-ubuntu.html)
