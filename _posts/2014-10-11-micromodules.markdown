@@ -44,17 +44,26 @@ Git
 
 Git sub-modules are to be used extensivelly. Each `pile` is intended
 to become a git submodule in the user's repository. To add a pile
-we do  
+we do:
 
     git submodule add git://github.com/chneukirchen/rack.git rack
 
-To clone a project with submodules one has to 
+To clone a project with submodules one has to:
 
-    git clone git://github.com/schacon/myproject.git
-    git submodule init
-    git submodule update
+    git clone --recursive git://github.com/schacon/myproject.git
     
     
+Dependencies
+------------
+
+Dependencies can either be added as nested sub-modules or siblings.
+Second (and recommended) mode requires the user to provide the 
+dependencies explicitly. A call to `pileInit()` before should suffice.
+
+`cmake/pile.cmake` module is required to contain a macro named
+`pileDependencies()` that in turn defines `PILES_DEPENDENCIES` as a
+list.
+	
 Resources
 ---------
 
