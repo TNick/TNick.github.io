@@ -2,11 +2,15 @@
 layout: post
 title:  "Micro-modules"
 date:   2014-05-24 12:00:00
-categories: ideas
+categories: ideas, deprecated
 ---
 
 Overview
 --------
+
+Note: This post has been superseded by the pages at 
+[pile-contributors.github.io](http://pile-contributors.github.io/)
+and does not reflect the current state of the project.
 
 This post attempts to organize ideas related to code re-usability.
 It mostly targets pieces of code too small to form a library
@@ -62,7 +66,10 @@ Dependencies can either be added as nested sub-modules or siblings.
 Second (and recommended) mode requires the user to provide the 
 dependencies explicitly. A call to `pileInit()` before should suffice.
 
-	
+`cmake/pile.cmake` module is required to contain a macro named
+`pileDependencies()` that in turn defines `PILES_DEPENDENCIES` as a
+list.
+
 Resources
 ---------
 
