@@ -2,7 +2,7 @@
 layout: post
 title:  "Micro-modules"
 date:   2014-05-24 12:00:00
-categories: ideas, deprecated
+categories: [ideas, deprecated]
 ---
 
 Overview
