@@ -1,0 +1,107 @@
+---
+layout: post
+title:  ""
+date:   2014-12-23 22:24:00
+categories: walkthrough
+---
+
+Overview
+========
+
+[Hierarchical temporal memory](http://en.wikipedia.org/wiki/Hierarchical_temporal_memory) is an online machine learning model 
+developed by Jeff Hawkins and Dileep George of Numenta, Inc. 
+that models some of the structural and algorithmic properties of the neocortex. 
+
+
+The Core
+========
+
+    git clone https://github.com/numenta/nupic.core.git nupic_core
+
+- [Getting started](https://github.com/numenta/nupic/wiki)
+- [NuPIC Architecture](https://github.com/numenta/nupic/wiki/NuPIC-Architecture)
+- [nupic.core Extraction Plan](https://github.com/numenta/nupic/wiki/nupic.core-Extraction-Plan)
+- [NuPIC API A bird's eye view](https://github.com/numenta/nupic/wiki/NuPIC-API---A-bird%27s-eye-view)
+
+Repositories
+============
+
+- [Numenta](https://github.com/numenta) on GitHub
+	- [nupic-core](https://github.com/numenta/nupic.core)
+	- [nupic](https://github.com/numenta/nupic)
+	- [research](https://github.com/numenta/nupic.research)
+
+- Various people
+	- [nupic.eeg](https://github.com/marionleborgne/nupic.eeg) and [CloudBrain](http://ebrain.io/introducing-cloudbrain/)
+
+License
+=======
+
+[NuPIC](http://numenta.org/nupic.html) is licensed as dual 
+commercial and [GPL version 3](http://www.gnu.org/licenses/gpl.html). 
+In effect, if you want to sell it you need to buy it.
+
+The contributors are asked to sign a 
+[contributor license](http://numenta.org/licenses/cl/).
+The position on patents is available 
+[here](http://numenta.org/blog/2013/07/01/patent-position.html). 
+
+Readings
+========
+
+- [On Intelligence](http://books.google.ro/books/about/On_Intelligence.html?id=xTD4LqJT0ggC&redir_esc=y) by Jeff Hawkins, 
+Henry Holt and Company, Oct 3, 2004 - 261 pages;
+	- [On Hawkins, Hierarchy, Homunculi and the Hippocampus](https://headbirths.wordpress.com/2013/10/08/on-hawkins-hierarchy-homunculi-and-the-hippocampus/)
+	- [Cortical memory](http://www.scholarpedia.org/article/Cortical_memory)
+	- [Review by Sunny Bains](http://sunnybains.typepad.com/bmbooks/2007/05/on_intelligence.html)
+	- [this must be a mistake](http://ordorica.org/system/ebooks/On%20Intelligence%20-%20Jeff%20Hawkins.pdf)
+- [HTM](http://numenta.com/assets/pdf/whitepapers/hierarchical-temporal-memory-cortical-learning-algorithm-0.2.1-en.pdf) white paper
+and a short [intro](http://numenta.org/htm.html) by Numenta, Inc., 
+Sept 12, 2011 - 68 pages.
+- [The Path to Machine Intelligence](http://numenta.com/assets/pdf/whitepapers/Numenta%20-%20Path%20to%20Machine%20Intelligence%20White%20Paper.pdf) White Paper
+by  Numenta, Inc., 
+(no release date) - 68 pages.
+- [Toward a Universal Cortical Algorithm]()
+by Michael R. Ferrier, 
+(no release date) - 105 pages.
+- [Introduction to the CLA Algorithm](http://numenta.org/resources/community-content/IntroductiontoCLAAlgorithm.pdf)
+by Christian Cleber Masdeval Braz, (no release date) - 12 pages;
+- [Hierarchical Temporal Memory Cortical Learning Algorithm for Pattern Recognition on Multi-core Architectures](http://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=1201&context=open_access_etds) by Ryan William Price, 
+2011 - 130 pages;
+- [Intelligent Predictions: an empirical study of the Cortical Learning Algorithm](http://numenta.org/resources/community-content/Masterthesis%20Nupic%20Study.pdf) by Michael Galetzka - Oct 31, 2014 - 73 pages
+- [Evaluating sparse codes on handwritten digits](http://www.ict.griffith.edu.au/~johnt/publications/AI2013.pdf) by John Thornton  (Australasian Joint Conference on AI 2013)
+- [Spatial Pooling for Greyscale Images](http://www.ict.griffith.edu.au/~johnt/publications/IJMLC2012.pdf) by John Thornton (International Journal of Machine Learning and Cybernetics - 2013)
+- [Fixed Frame Temporal Pooling](http://www.ict.griffith.edu.au/~johnt/publications/AI2012.pdf) by John Thornton (AI 2012: Advances in Artificial Intelligence, 25th Australasian Joint Conference on Artificial Intelligence, Sydney, Australia, December 4-7, 2012)
+- [Augmented Spatial Pooling](http://www.ict.griffith.edu.au/~johnt/publications/AI2011.pdf) by John Thornton (AI 2011: Advances in Artificial Intelligence, 24th Australasian Joint Conference on Artificial Intelligence, Perth, Australia, December 5-8, 2011)
+- [Offline Cursive Character Recognition: A state-of-the-art comparison](http://www.ict.griffith.edu.au/~johnt/publications/IGS2009.pdf) by John Thornton (Proceedings of the 14th Conference of the International Graphonomics Society IGS 2009, Dijon, France, September 13-16, 2009)
+- [Character Recognition using Hierarchical Vector Quantization and Temporal Pooling](http://www.ict.griffith.edu.au/~johnt/publications/AI2008.pdf) by John Thornton (AI 2008: Advances in Artificial Intelligence, 21st Australasian Joint Conference on Artificial Intelligence, Auckland, New Zealand, December 3-5, 2008)
+
+
+
+[Blog archive](http://numenta.org/blog/archive.html),
+[news archive](http://numenta.org/news/archive.html), 
+[FAQ](http://numenta.org/faq.html), [wiki](https://github.com/numenta/nupic/Wiki/), [Glitter live chat](https://gitter.im/numenta/public),
+[mailing-list](http://lists.numenta.org/pipermail/nupic-theory_lists.numenta.org/),
+[StackOverflow questions](http://stackoverflow.com/questions/tagged/nupic).
+
+Resources
+=========
+
+- [numenta.com](http://numenta.com/)
+- [numenta.org](http://numenta.org/)
+- [NuPIC Youtube Channel](https://www.youtube.com/user/OfficialNumenta/videos)
+- [Numenta Youtube Channel](https://www.youtube.com/user/numenta/videos)
+- [My Playlist](https://www.youtube.com/playlist?list=PLyh828DIg4wdSck2_H5A_KruczVscZXv6)
+- [NuPIC Posts by Fergal Byrne](http://inbits.com/category/nupic/)
+- [fxai blog](http://floybix.github.io/) by Felix Andrews
+- [cortical.io](http://www.cortical.io/)
+- [NuPIC Setup in Ubuntu](https://nikolaygrozev.wordpress.com/2014/02/25/nupic-setup-in-ubuntu/)
+- [Neuro Papers - Bryan](http://diyhpl.us/~bryan/papers2/neuro/)
+
+- [Independent study research project by Greg Slepak](https://www.taoeffect.com/other/nupic/)
+- [Spatio-temporal memories for machine learning: a long-term memory organization](http://www.ncbi.nlm.nih.gov/pubmed/19336289)
+- [Palmistry (in PLOS Biology)](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC526780/)
+
+- [Nerd Wisdom about On Intelligence](http://nerdwisdom.com/tag/nupic/)
+- [A messy and incomplete list Artificial General Intelligence projects](http://linas.org/agi.html)
+- [HTM Neuroscience Papers](http://www.mendeley.com/groups/4799871/htm-neuroscience-papers/papers/)
