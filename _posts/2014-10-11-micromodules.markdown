@@ -10,18 +10,20 @@ Overview
 
 This post attempts to organize ideas related to code re-usability.
 It mostly targets pieces of code too small to form a library
-but flexibility is added to create static or shared libraries.
+(but flexibility is added to create static or shared libraries).
 We will refer to such a unit as a `pile`.
 
 Each such `pile` consists of two repositories: 
 
-- one that only contains the source code, copyright information, usage information, called `pile-source`
-- one that contains everything else like test code, tools used to generate the source, etc. called `pile-helpers`
+- one that only contains the source code, copyright information,
+usage information, called `pile-source`
+- one that contains everything else like test code, tools 
+used to generate the source, etc. called `pile-helpers`
 
 The word `pile` is to be replaced by the actual name.
 
-The tools to be used are cmake and git. The parameters that change
-the functionality are to be passed on using cmake, with
+The tools to be used are CMake and git. The parameters that change
+the functionality are to be passed on using CMake, with
 the source being kept unchanged. Any change to the source should
 be passed upstream to improve the overall quality and usability.
 
@@ -42,21 +44,27 @@ to either `add_directory()` or to include the macro file.
 Git
 ---
 
-Git sub-modules are to be used extensivelly. Each `pile` is intended
-to become a git submodule in the user's repository. To add a pile
-we do  
+Git sub-modules are to be used extensively. Each `pile` is intended
+to become a git sub-module in the user's repository. To add a pile
+we do:
 
     git submodule add git://github.com/chneukirchen/rack.git rack
 
-To clone a project with submodules one has to 
+To clone a project with sub-modules one has to:
 
-    git clone git://github.com/schacon/myproject.git
-    git submodule init
-    git submodule update
+    git clone --recursive git://github.com/schacon/myproject.git
     
     
+Dependencies
+------------
+
+Dependencies can either be added as nested sub-modules or siblings.
+Second (and recommended) mode requires the user to provide the 
+dependencies explicitly. A call to `pileInit()` before should suffice.
+
+	
 Resources
 ---------
 
 - [LXC on Ubuntu](http://srdandukic.blogspot.ro/2012/04/lxc-on-ubuntu.html)
-- [Git Submodules](http://git-scm.com/book/en/Git-Tools-Submodules)
+- [Git Sub-modules](http://git-scm.com/book/en/Git-Tools-Submodules)
