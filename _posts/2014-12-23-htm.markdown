@@ -105,3 +105,5 @@ Resources
 - [Nerd Wisdom about On Intelligence](http://nerdwisdom.com/tag/nupic/)
 - [A messy and incomplete list Artificial General Intelligence projects](http://linas.org/agi.html)
 - [HTM Neuroscience Papers](http://www.mendeley.com/groups/4799871/htm-neuroscience-papers/papers/)
+- [Eric Laukien's blog on Continuous Hierarchical Temporal Memory](https://cireneikual.wordpress.com/)
+
