@@ -124,6 +124,14 @@ Where:
 - **authority_ca.crt** is your certificate if you are a certification authority
 
 
+Windows specifics
+=================
+
+The directory where OpenSSL is installed may be 
+added to the PATH environment variable.
+Alternatively, an environment variable - say OSL - 
+maybe defined to hold the path to the openssl.exe binary.
+
 Resources
 =========
 

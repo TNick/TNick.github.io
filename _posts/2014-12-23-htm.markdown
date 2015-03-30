@@ -77,7 +77,7 @@ by Christian Cleber Masdeval Braz, (no release date) - 12 pages;
 - [Character Recognition using Hierarchical Vector Quantization and Temporal Pooling](http://www.ict.griffith.edu.au/~johnt/publications/AI2008.pdf) by John Thornton (AI 2008: Advances in Artificial Intelligence, 21st Australasian Joint Conference on Artificial Intelligence, Auckland, New Zealand, December 3-5, 2008)
 
 
-
+[Reading List](https://github.com/numenta/nupic/wiki/Reading-List), 
 [Blog archive](http://numenta.org/blog/archive.html),
 [news archive](http://numenta.org/news/archive.html), 
 [FAQ](http://numenta.org/faq.html), [wiki](https://github.com/numenta/nupic/Wiki/), [Glitter live chat](https://gitter.im/numenta/public),
@@ -97,6 +97,12 @@ Resources
 - [cortical.io](http://www.cortical.io/)
 - [NuPIC Setup in Ubuntu](https://nikolaygrozev.wordpress.com/2014/02/25/nupic-setup-in-ubuntu/)
 - [Neuro Papers - Bryan](http://diyhpl.us/~bryan/papers2/neuro/)
+- [Prefrontal Cortex Basal Ganglia Working Memory](http://en.wikipedia.org/wiki/Prefrontal_Cortex_Basal_Ganglia_Working_Memory)
+- [A cortical sparse distributed coding model linking mini- and macrocolumn-scale functionality ](http://journal.frontiersin.org/Journal/10.3389/fnana.2010.00017/full)
+- [Sparse Distributed Representations](http://a-mpf.blogspot.com.au/2014/12/sparse-distributed-representations-sdrs_24.html)
+- [Bouncing ball Youtube](https://www.youtube.com/watch?v=YeBC9eew3Lg)
+- [Cortical and subcortical predictive dynamics](http://rstb.royalsocietypublishing.org/content/364/1521/1223) by Stephen Grossberg
+- [Graybiel Laboratory](http://web.mit.edu/bcs/graybiel-lab/publications.html?) by Stephen Grossberg
 
 - [Independent study research project by Greg Slepak](https://www.taoeffect.com/other/nupic/)
 - [Spatio-temporal memories for machine learning: a long-term memory organization](http://www.ncbi.nlm.nih.gov/pubmed/19336289)
