@@ -1,0 +1,97 @@
+---
+layout: post
+title:  "Cron jobs"
+date:   2014-06-28 12:00:00
+categories: walkthrough
+---
+
+Overview
+--------
+
+[Wikipedia](http://en.wikipedia.org/wiki/Cron)
+The software utility Cron is a time-based job scheduler in Unix-like computer operating systems.
+Cron jobs are created using the command line program called `crontab`.
+
+{% highlight bash %}
+usage:  crontab [-u user] file
+    crontab [ -u user ] [ -i ] { -e | -l | -r }
+        (default operation is replace, per 1003.2)
+    -e  (edit user's crontab)
+    -l  (list user's crontab)
+    -r  (delete user's crontab)
+    -i  (prompt before deleting user's crontab)
+{% endhighlight %}
+
+To create a new one call it like so:
+
+{% highlight bash %}
+crontab "path-to-file"
+{% endhighlight %}
+
+The format of a crontab schedule (the text file) consists of 6 fields:
+
+{% highlight bash %}
+minute hour day month day-of-week command-line-to-execute
+{% endhighlight %}
+
+To run a command once a day, at 8:15 PM use:
+
+{% highlight bash %}
+15 8 * * * echo "Its 8:15 PM"
+{% endhighlight %}
+
+To run a command once an hour use:
+
+{% highlight bash %}
+0 * * * * echo "ello" >/dev/null
+{% endhighlight %}
+
+To run a command once every two hours use:
+
+{% highlight bash %}
+0 */2 * * * echo "ello" >/dev/null
+{% endhighlight %}
+
+To run a command at 8:15 and 16:15 use:
+
+{% highlight bash %}
+15 8,16 * * * echo "ello" >/dev/null
+{% endhighlight %}
+
+
+Listing
+-------
+
+To list running jobs use
+
+
+{% highlight bash %}
+crontab -l
+{% endhighlight %}
+
+
+Editing
+-------
+
+Rather than creating a file for every command one can edit the list of
+jobs using:
+
+{% highlight bash %}
+crontab -e
+{% endhighlight %}
+
+
+Removing
+--------
+
+Remove all jobs:
+
+{% highlight bash %}
+crontab -r
+{% endhighlight %}
+
+
+Resources
+---------
+
+- [How to Create a Cron Job (Scheduled Task)](http://www.thesitewizard.com/general/set-cron-job.shtml)
